@@ -1,7 +1,6 @@
 package com.partheeban.stepdefinitions;
 
 import com.partheeban.pages.Login;
-import com.partheeban.utility.BaseDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,7 +10,7 @@ import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class SampleTestDefs extends BaseDriver {
+public class SampleTestDefs {
 
     private WebDriver driver;
 
