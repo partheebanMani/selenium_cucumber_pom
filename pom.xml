@@ -20,6 +20,7 @@
         <maven.surefire.plugin.version>3.1.0</maven.surefire.plugin.version>
         <cucumber.reporting.plugin.version>5.7.5</cucumber.reporting.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
+        <!--suppress UnresolvedMavenProperty -->
         <results.dir>${project.basedir}/results/${result.time}</results.dir>
         <owner.version>1.0.12</owner.version>
         <gatling.version>3.9.5</gatling.version>
