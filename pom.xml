@@ -25,7 +25,6 @@
         <owner.version>1.0.12</owner.version>
         <gatling.version>3.9.5</gatling.version>
         <gatling.maven.plugin>4.3.5</gatling.maven.plugin>
-        <threadCount>1</threadCount>
         <lombok.version>1.18.28</lombok.version>
         <assertj.version>3.24.2</assertj.version>
 
@@ -223,5 +222,39 @@
 
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test.env>dev</test.env>
+                <threadCount>1</threadCount>
+            </properties>
+        </profile>
+        <profile>
+            <id>stage</id>
+            <properties>
+                <test.env>prod</test.env>
+                <threadCount>1</threadCount>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <test.env>prod</test.env>
+                <threadCount>1</threadCount>
+            </properties>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties>
+                <test.env>QA</test.env>
+                <threadCount>1</threadCount>
+            </properties>
+        </profile>
+
+    </profiles>
 
 </project>
