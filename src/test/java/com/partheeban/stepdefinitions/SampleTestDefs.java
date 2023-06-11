@@ -12,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SampleTestDefs {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
     public SampleTestDefs(BaseSteps baseSteps) {
-        this.driver = baseSteps.getDriver();
+        driver = baseSteps.getDriver();
     }
 
     private Login login;

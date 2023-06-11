@@ -28,7 +28,7 @@ public class BaseSteps {
         driver = BaseDriver.getWebDriver();
     }
 
-    @After(order = 1)
+    @After(order = -1)
     public void takeScreenshot(Scenario scenario) {
         System.out.println("================after hook is called take screenshot=================");
         DriverManager.takeScreenshot(scenario);

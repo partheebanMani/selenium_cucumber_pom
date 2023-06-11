@@ -18,6 +18,9 @@ public class Inventory {
     @FindBy(className = "app_logo")
     private WebElement appLogo;
 
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement backBag;
+
 
     public Inventory(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -34,6 +37,10 @@ public class Inventory {
 
     public String getAppLogoText() {
         return appLogo.getText();
+    }
+
+    public Boolean isItBackBag() {
+        return backBag.isEnabled();
     }
 
 }
