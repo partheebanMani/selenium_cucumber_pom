@@ -1,6 +1,7 @@
 package com.partheeban.stepdefinitions;
 
 import com.partheeban.pages.Inventory;
+import com.partheeban.utility.BaseDriver;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +18,7 @@ public class InventoryStepDefs {
 
     public InventoryStepDefs(BaseSteps baseSteps) {
         scenario = baseSteps.getScenario();
-        driver = baseSteps.getDriver();
+        driver = BaseDriver.getWebDriver();
     }
 
     @Then("verify browser navigated to inventory page")

@@ -1,6 +1,8 @@
 package com.partheeban.stepdefinitions;
 
 import com.partheeban.pages.Login;
+import com.partheeban.utility.BaseDriver;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,12 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SampleTestDefs {
 
     private static WebDriver driver;
+    private Scenario scenario;
+    private Login login;
 
     public SampleTestDefs(BaseSteps baseSteps) {
-        driver = baseSteps.getDriver();
+        this.scenario = baseSteps.getScenario();
+        driver = BaseDriver.getWebDriver();
     }
-
-    private Login login;
 
     @Given("Enter username as {string}")
     public void enterUsernameAsStandard_user(String username) {

@@ -12,7 +12,7 @@ import org.testng.annotations.AfterSuite;
 @Data
 public class BaseSteps {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private Scenario scenario;
 
 
@@ -31,18 +31,18 @@ public class BaseSteps {
     @After(order = -1)
     public void takeScreenshot(Scenario scenario) {
         System.out.println("================after hook is called take screenshot=================");
-        DriverManager.takeScreenshot(scenario);
+        BaseDriver.takeScreenshot(scenario);
     }
 
     @After(order = 0)
     public void exit() {
         System.out.println("============after hook is called take screenshot======================");
-        DriverManager.closeDriver();
+        driver.close();
     }
 
     @AfterSuite
     public void exitBrowser() {
-        DriverManager.quitDriver();
+        driver.quit();
     }
 
 }
