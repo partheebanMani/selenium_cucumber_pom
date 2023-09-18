@@ -1,9 +1,21 @@
 package com.partheeban.utility;
 
+import lombok.SneakyThrows;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Util {
     public static class CSV {
@@ -14,6 +26,37 @@ public class Util {
                     .collect(Collectors.toList());
 
         }
+    }
+
+    public static class Wait {
+        public static WebElement getExplicitWebElement(WebDriver driver, int seconds, By element) {
+            return new WebDriverWait(driver, Duration.ofSeconds(seconds)).
+                    until(ExpectedConditions.elementToBeClickable(element));
+        }
+
+        public static void getFluentWait(WebDriver driver, int timeout, int pollingfrequency, String id) {
+            FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(timeout))
+                    .pollingEvery(Duration.ofSeconds(pollingfrequency))
+                    .ignoring(NoSuchElementException.class);
+
+            wait.until(s -> s.findElement(By.id(id)));
+        }
+    }
+
+    public static class FilesUtil {
+
+        final static String DATA_FILES_LOCATION = "src/main/resources";
+
+        @SneakyThrows
+        public static String getDataFromFile(String fileName) {
+            Path path = Paths.get(DATA_FILES_LOCATION + fileName);
+            Stream<String> lines = Files.lines(path);
+            String data = lines.collect(Collectors.joining("\n"));
+            lines.close();
+            return data;
+        }
+
     }
 
 }

@@ -11,3 +11,12 @@ Feature: Tests to validate Inventory page
     Given is it back Bag present
     * Add back bag to cart
     Then verify back bag is added in cart
+
+  @dropDown
+  Scenario Outline: Select dropdown by name
+    Given sort by name '<value>'
+
+    Examples:
+      | value               |
+      | Name (A to Z)       |
+      | Price (low to high) |

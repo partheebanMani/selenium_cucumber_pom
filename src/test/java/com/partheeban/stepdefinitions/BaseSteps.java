@@ -1,13 +1,12 @@
 package com.partheeban.stepdefinitions;
 
 import com.partheeban.utility.BaseDriver;
-import com.partheeban.utility.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
+
 
 @Data
 public class BaseSteps {
@@ -24,11 +23,10 @@ public class BaseSteps {
     @Before(order = 1)
     public void driverSetUp() throws InterruptedException {
         System.out.println("===============Driver setup hook===================== ");
-        DriverManager.setUpDriver();
         driver = BaseDriver.getWebDriver();
     }
 
-    @After(order = -1)
+    @After(order = 1)
     public void takeScreenshot(Scenario scenario) {
         System.out.println("================after hook is called take screenshot=================");
         BaseDriver.takeScreenshot(scenario);
@@ -37,12 +35,12 @@ public class BaseSteps {
     @After(order = 0)
     public void exit() {
         System.out.println("============after hook is called take screenshot======================");
-        driver.close();
+        BaseDriver.closeDriver();
     }
 
-    @AfterSuite
-    public void exitBrowser() {
-        driver.quit();
-    }
+//    @AfterAll
+//    public static void exitBrowser() {
+//        BaseDriver.quitDriver();
+//    }
 
 }

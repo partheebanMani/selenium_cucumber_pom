@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = {"src/test/resources"},
-        glue = {"com.partheeban.stepdefinitions"},
         plugin = {"json:target/cucumber.json",
                 "html:target/cucumber-html-reports/consolidated.html",
                 "rerun:target/cucumber-html-reports/rerun.txt"}

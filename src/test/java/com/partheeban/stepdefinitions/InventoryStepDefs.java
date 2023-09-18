@@ -35,9 +35,16 @@ public class InventoryStepDefs {
 
     @When("Add back bag to cart")
     public void addBackBagToCart() {
+        inventory.addBackBag();
     }
 
     @Then("verify back bag is added in cart")
     public void verifyBackBagIsAddedInCart() {
+        assertThat(inventory.isRemoveButtonEnabled()).as("back bag is not added to cart").isTrue();
+    }
+
+    @Given("sort by name {string}")
+    public void sortByName(String name) {
+        inventory.selectDropDownByName(name);
     }
 }

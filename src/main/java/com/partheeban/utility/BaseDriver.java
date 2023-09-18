@@ -9,6 +9,10 @@ public class BaseDriver {
     private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     public synchronized static WebDriver getWebDriver() {
+        if (webDriver.get() == null) {
+            setWebDriver(DriverManager.setUpDriver());
+        }
+
         return webDriver.get();
     }
 
@@ -32,6 +36,5 @@ public class BaseDriver {
             scenario.attach(src, "image/png", "screenshot");
         }
     }
-
 
 }

@@ -12,7 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.9.1</selenium.version>
+        <selenium.version>4.11.0</selenium.version>
         <cucumber.java.version>7.12.0</cucumber.java.version>
         <cucumber.testng.version>7.12.0</cucumber.testng.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>

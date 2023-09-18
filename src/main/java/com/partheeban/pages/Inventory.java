@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class Inventory {
 
@@ -20,6 +21,12 @@ public class Inventory {
 
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     private WebElement backBag;
+
+    @FindBy(id = "remove-sauce-labs-backpack")
+    private WebElement removeBackBagButton;
+
+    @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/div/span/select")
+    private WebElement sortByIcon;
 
 
     public Inventory(WebDriver webDriver) {
@@ -43,4 +50,16 @@ public class Inventory {
         return backBag.isEnabled();
     }
 
+    public void addBackBag() {
+        backBag.click();
+    }
+
+    public Boolean isRemoveButtonEnabled() {
+        return removeBackBagButton.isEnabled();
+    }
+
+    public void selectDropDownByName(String value) {
+        Select select = new Select(sortByIcon);
+        select.selectByVisibleText(value);
+    }
 }
