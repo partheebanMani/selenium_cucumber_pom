@@ -6,7 +6,6 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,18 +13,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SampleTestDefs {
 
-    private static WebDriver driver;
     private Scenario scenario;
     private Login login;
 
     public SampleTestDefs(BaseSteps baseSteps) {
         this.scenario = baseSteps.getScenario();
-        driver = BaseDriver.getWebDriver();
     }
 
     @Given("Enter username as {string}")
     public void enterUsernameAsStandard_user(String username) {
-        login = new Login(driver);
+        BaseDriver.getWebDriver().get(PROPERTIES_CONFIG.url());
+        login = new Login(BaseDriver.getWebDriver());
         login.enterUserName(username);
     }
 

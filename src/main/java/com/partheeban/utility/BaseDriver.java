@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class BaseDriver {
     private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
-    public synchronized static WebDriver getWebDriver() {
+    public static synchronized WebDriver getWebDriver() {
         if (webDriver.get() == null) {
             setWebDriver(DriverManager.setUpDriver());
         }
@@ -18,7 +18,6 @@ public class BaseDriver {
 
     public static synchronized void setWebDriver(WebDriver webDriver) {
         BaseDriver.webDriver.set(webDriver);
-
     }
 
     public static void closeDriver() {

@@ -23,7 +23,7 @@ public class BaseSteps {
     @Before(order = 1)
     public void driverSetUp() throws InterruptedException {
         System.out.println("===============Driver setup hook===================== ");
-        driver = BaseDriver.getWebDriver();
+        BaseDriver.getWebDriver();
     }
 
     @After(order = 1)

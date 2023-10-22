@@ -19,7 +19,7 @@ public class DriverManager {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get(PROPERTIES_CONFIG.url());
+
         return driver;
     }
 

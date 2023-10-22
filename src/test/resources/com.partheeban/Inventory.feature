@@ -7,10 +7,12 @@ Feature: Tests to validate Inventory page
     * Click login button
     Then verify browser navigated to inventory page
 
-  Scenario: Verify back bag is present and add to cart
-    Given is it back Bag present
-    * Add back bag to cart
-    Then verify back bag is added in cart
+  @AddProductToCart
+  Scenario: Verify items are present and add to cart
+    Given verify 'Sauce Labs Backpack' is present in products page
+    * Add 'Sauce Labs Backpack' to cart
+    Then verify 'Sauce Labs Backpack' is added in cart
+    * Verify cart count is increased to 1
 
   @dropDown
   Scenario Outline: Select dropdown by name
