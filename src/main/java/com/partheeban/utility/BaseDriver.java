@@ -26,6 +26,7 @@ public class BaseDriver {
 
     public static void quitDriver() {
         getWebDriver().quit();
+        webDriver.remove();
     }
 
     public static void takeScreenshot(Scenario scenario) {

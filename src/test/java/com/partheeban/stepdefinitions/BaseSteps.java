@@ -34,8 +34,8 @@ public class BaseSteps {
 
     @After(order = 0)
     public void exit() {
-        System.out.println("============after hook is called take screenshot======================");
-        BaseDriver.closeDriver();
+        System.out.println("============after hook to close Driver======================");
+        BaseDriver.quitDriver();
     }
 
 //    @AfterAll

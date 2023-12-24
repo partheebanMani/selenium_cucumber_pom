@@ -23,7 +23,7 @@ public class Util {
         public static List<String[]> readAllLines(String filePath) throws Exception {
             return Files.lines(Paths.get(filePath))
                     .map(line -> line.split(","))
-                    .collect(Collectors.toList());
+                    .toList();
 
         }
     }
