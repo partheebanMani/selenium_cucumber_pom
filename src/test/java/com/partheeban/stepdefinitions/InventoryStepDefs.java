@@ -8,6 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InventoryStepDefs {
@@ -38,7 +40,7 @@ public class InventoryStepDefs {
 
     @When("Add {string} to cart")
     public void addSauceLabsBackpackToCart(String productName) {
-        inventory.findProductAndAddToCart(productName);
+        Arrays.stream(productName.split(",")).forEach(product -> inventory.findProductAndAddToCart(product));
     }
 
     @Then("verify {string} is added in cart")

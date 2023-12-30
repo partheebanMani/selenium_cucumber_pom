@@ -14,6 +14,12 @@ Feature: Tests to validate Inventory page
     Then verify 'Sauce Labs Backpack' is added in cart
     * Verify cart count is increased to 1
 
+  @AddMultipleProductToCart
+  Scenario: Verify multiple items are present and add to cart
+    Given Add 'Sauce Labs Backpack,Sauce Labs Bolt T-Shirt,Sauce Labs Onesie' to cart
+    Then verify 'Sauce Labs Backpack' is added in cart
+    * Verify cart count is increased to 3
+
   @dropDown
   Scenario Outline: Select dropdown by name
     Given sort by name '<value>'
