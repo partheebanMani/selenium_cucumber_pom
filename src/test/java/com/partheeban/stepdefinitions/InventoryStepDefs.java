@@ -7,11 +7,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+@Slf4j
 public class InventoryStepDefs {
 
     private Scenario scenario;
@@ -52,4 +55,12 @@ public class InventoryStepDefs {
     public void verifyCartCountIsIncreasedTo(int expectedCount) {
         assertThat(inventory.getCartCount()).as("Cart count is not as expected").isEqualTo(expectedCount);
     }
+
+    @When("Click shopping cart icon")
+    @SneakyThrows
+    public void clickShoppingCartIcon() {
+        inventory.clickShoppingCartLink();
+    }
+
+
 }

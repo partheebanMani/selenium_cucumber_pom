@@ -35,6 +35,9 @@ public class Inventory {
     @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/div/span/select")
     private WebElement sortByIcon;
 
+    @FindBy(className = "shopping_cart_link")
+    private WebElement shoppingCartLink;
+
 
     public Inventory(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -79,6 +82,10 @@ public class Inventory {
 
     public Integer getCartCount() {
         return Integer.parseInt(shoppingCartBadge.getText());
+    }
+
+    public void clickShoppingCartLink() {
+        shoppingCartLink.click();
     }
 
 

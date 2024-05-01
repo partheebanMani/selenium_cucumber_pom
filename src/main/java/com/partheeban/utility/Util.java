@@ -1,6 +1,7 @@
 package com.partheeban.utility;
 
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +36,7 @@ public class Util {
         }
 
         public static void getFluentWait(WebDriver driver, int timeout, int pollingfrequency, String id) {
-            FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            FluentWait<WebDriver> wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(timeout))
                     .pollingEvery(Duration.ofSeconds(pollingfrequency))
                     .ignoring(NoSuchElementException.class);
@@ -57,6 +58,14 @@ public class Util {
             return data;
         }
 
+    }
+
+
+    public static class StringHelper {
+
+        public String randomString(int length) {
+            return RandomStringUtils.randomAlphabetic(200);
+        }
     }
 
 }

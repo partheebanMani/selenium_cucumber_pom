@@ -1,4 +1,4 @@
-@LoginPage
+@Selenium @LoginPage
 Feature:  This feature file is to sourceLab website
 
   @LoginPositive

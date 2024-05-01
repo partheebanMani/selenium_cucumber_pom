@@ -1,4 +1,4 @@
-@Inventory
+@Selenium @Inventory
 Feature: Tests to validate Inventory page
 
   Background:Login and navigate to inventory page
@@ -19,6 +19,16 @@ Feature: Tests to validate Inventory page
     Given Add 'Sauce Labs Backpack,Sauce Labs Bolt T-Shirt,Sauce Labs Onesie' to cart
     Then verify 'Sauce Labs Backpack' is added in cart
     * Verify cart count is increased to 3
+
+
+  @AddProductToCartAndGoto
+  Scenario: Verify items are present and add to cart
+    Given verify 'Sauce Labs Backpack' is present in products page
+    * Add 'Sauce Labs Backpack' to cart
+    Then verify 'Sauce Labs Backpack' is added in cart
+    * Verify cart count is increased to 1
+    * Click shopping cart icon
+
 
   @dropDown
   Scenario Outline: Select dropdown by name

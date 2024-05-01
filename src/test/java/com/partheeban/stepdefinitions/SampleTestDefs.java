@@ -2,10 +2,10 @@ package com.partheeban.stepdefinitions;
 
 import com.partheeban.pages.Login;
 import com.partheeban.utility.BaseDriver;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.SneakyThrows;
 
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,11 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SampleTestDefs {
 
-    private Scenario scenario;
     private Login login;
 
-    public SampleTestDefs(BaseSteps baseSteps) {
-        this.scenario = baseSteps.getScenario();
+    public SampleTestDefs() {
     }
 
     @Given("Enter username as {string}")
@@ -33,9 +31,9 @@ public class SampleTestDefs {
     }
 
     @Then("Click login button")
-    public void clickLoginButton() throws InterruptedException {
+    @SneakyThrows
+    public void clickLoginButton() {
         login.clickLoginButton();
-        Thread.sleep(10000);
     }
 
     @When("verify this is {string}")
