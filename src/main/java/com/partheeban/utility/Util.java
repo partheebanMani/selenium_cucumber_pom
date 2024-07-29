@@ -64,7 +64,7 @@ public class Util {
     public static class StringHelper {
 
         public String randomString(int length) {
-            return RandomStringUtils.randomAlphabetic(200);
+            return RandomStringUtils.randomAlphabetic(length);
         }
     }
 

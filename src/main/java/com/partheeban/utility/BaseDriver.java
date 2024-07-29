@@ -1,9 +1,13 @@
 package com.partheeban.utility;
 
 import io.cucumber.java.Scenario;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BaseDriver {
     private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
@@ -35,6 +39,13 @@ public class BaseDriver {
             byte[] src = takesScreenshot.getScreenshotAs(OutputType.BYTES);
             scenario.attach(src, "image/png", "screenshot");
         }
+    }
+
+    public static void takeScreenshot(String location) throws IOException {
+        File file = new File(location);
+        TakesScreenshot takesScreenshot = (TakesScreenshot) getWebDriver();
+        File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(src, file);
     }
 
 }

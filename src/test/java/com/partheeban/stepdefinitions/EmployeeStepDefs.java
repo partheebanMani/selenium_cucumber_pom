@@ -6,7 +6,7 @@ import com.partheeban.enums.RestAPIs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.RequestSender;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
@@ -17,18 +17,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class EmployeeStepDefs extends BaseApplication {
 
-    private final RequestSpecification employeeSpecification;
+    private final RequestSender employeeRequestSpecBuilder;
     private final TestContext testContext;
 
     public EmployeeStepDefs(TestContext testContext) {
         super(List.of(RestAPIs.EMPLOYEE));
         this.testContext = testContext;
-        employeeSpecification = employee.getEmployeeSpecification();
+        employeeRequestSpecBuilder = employee.getEmployeeSpecification();
     }
 
     @Given("Call get all employee API")
     public void callGetAllEmployeeAPI() {
-        testContext.response = employeeSpecification.get("/api/user?page=2");
+        testContext.response = employeeRequestSpecBuilder.get("/api/user?page=2");
     }
 
     @When("verify response code is {int}")

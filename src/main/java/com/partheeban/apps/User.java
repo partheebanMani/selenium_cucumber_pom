@@ -1,17 +1,28 @@
 package com.partheeban.apps;
 
 import com.partheeban.utility.PropertiesConfig;
-import io.restassured.RestAssured;
+import com.partheeban.utility.RestAssuredUtility;
 import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
+import lombok.experimental.ExtensionMethod;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
+@ExtensionMethod(RestAssuredUtility.class)
 public class User {
 
-    private RequestSpecification userSpecfication;
+    private final RequestSpecification userSpecfication;
+    private String token;
 
     public User() {
-        RestAssured.baseURI = PropertiesConfig.PROPERTIES_CONFIG.userBaseUrl();
-        userSpecfication = RestAssured.given();
+        if (StringUtils.isEmpty(token)) {
+            generateToken();
+        }
+        userSpecfication = PropertiesConfig.PROPERTIES_CONFIG.userBaseUrl().getRequestSpecBuilder(token);
+    }
+
+    private void generateToken() {
+        System.out.println("generate token");
+        token = "sdfdsfsdfsdf";
     }
 }

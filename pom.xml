@@ -18,7 +18,7 @@
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.1.0</maven.surefire.plugin.version>
-        <cucumber.reporting.plugin.version>5.7.5</cucumber.reporting.plugin.version>
+        <cucumber.reporting.plugin.version>5.8.0</cucumber.reporting.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <!--suppress UnresolvedMavenProperty -->
         <results.dir>${project.basedir}/results/${result.time}</results.dir>
@@ -104,7 +104,15 @@
             <artifactId>json</artifactId>
             <version>20240303</version>
         </dependency>
-        
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -156,6 +164,7 @@
                             <jsonFiles>
                                 <param>**/cucumber.json</param>
                             </jsonFiles>
+                            <checkBuildResult>true</checkBuildResult>
                         </configuration>
                     </execution>
                 </executions>

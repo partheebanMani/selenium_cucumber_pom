@@ -33,4 +33,7 @@ public interface PropertiesConfig extends Config {
 
     @Key("user.url")
     String userBaseUrl();
+
+    @Key("form.url")
+    String formUrl();
 }
