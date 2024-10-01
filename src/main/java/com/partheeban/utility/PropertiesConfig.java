@@ -36,4 +36,10 @@ public interface PropertiesConfig extends Config {
 
     @Key("form.url")
     String formUrl();
+
+    @Key("grid.url")
+    String gridUrl();
+
+    @Key("browser.env")
+    String browserEnv();
 }

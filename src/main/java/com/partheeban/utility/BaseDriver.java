@@ -42,9 +42,9 @@ public class BaseDriver {
     }
 
     public static void takeScreenshot(Scenario scenario) {
-        if (!scenario.isFailed()) {
+        if (scenario.isFailed()) {
             takeSeleniumScreenshot(scenario);
-            getFullPageScreenshot(scenario);
+//            getFullPageScreenshot(scenario);
         }
     }
 

@@ -47,7 +47,7 @@ public class Util {
 
     public static class FilesUtil {
 
-        final static String DATA_FILES_LOCATION = "src/main/resources";
+        static final String DATA_FILES_LOCATION = "src/main/resources";
 
         @SneakyThrows
         public static String getDataFromFile(String fileName) {
