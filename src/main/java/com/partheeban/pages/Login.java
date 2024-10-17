@@ -3,9 +3,8 @@ package com.partheeban.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class Login {
+public class Login extends BasePage {
 
     private WebDriver webDriver;
 
@@ -20,8 +19,7 @@ public class Login {
 
 
     public Login(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+        super(webDriver);
     }
 
     public void enterUserName(String userName) {
@@ -33,7 +31,7 @@ public class Login {
     }
 
     public void clickLoginButton() {
-        this.loginButton.click();
+        seleniumUtility.waitForElementToBeClickable(10, loginButton).click();
     }
 
     public String getCurrentPageURL() {

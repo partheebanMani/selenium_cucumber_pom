@@ -4,17 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class Inventory {
+public class Inventory extends BasePage {
 
     private WebDriver webDriver;
-    private WebDriverWait wait;
 
 
     @FindBy(id = "shopping_cart_container")
@@ -40,9 +34,7 @@ public class Inventory {
 
 
     public Inventory(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        super(webDriver);
     }
 
     public void clickCartIcon() {
@@ -67,7 +59,7 @@ public class Inventory {
     }
 
     public WebElement findProduct(String productName) {
-        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(), '" + productName + "')]")));
+        return seleniumUtility.waitForElementToBeClickable(10, By.xpath("//div[contains(text(), '" + productName + "')]"));
     }
 
     public void findProductAndAddToCart(String productName) {

@@ -15,8 +15,6 @@ public class SampleTestDefs {
 
     private Login login;
 
-    public SampleTestDefs() {
-    }
 
     @Given("Enter username as {string}")
     public void enterUsernameAsStandard_user(String username) {
