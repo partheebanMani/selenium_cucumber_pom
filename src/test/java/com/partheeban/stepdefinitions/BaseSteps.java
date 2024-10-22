@@ -5,13 +5,11 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import lombok.Data;
-import org.openqa.selenium.WebDriver;
 
 
 @Data
 public class BaseSteps {
 
-    private static WebDriver driver;
     private Scenario scenario;
 
 

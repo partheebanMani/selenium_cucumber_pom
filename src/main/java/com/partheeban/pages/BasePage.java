@@ -15,6 +15,7 @@ public class BasePage {
         this.seleniumUtility = new SeleniumUtility(webDriver);
         PageFactory.initElements(webDriver, this);
         this.util = new Util();
+        this.webDriver = webDriver;
     }
 
 

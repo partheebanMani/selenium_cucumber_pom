@@ -21,7 +21,7 @@ public class InventoryStepDefs {
     private Inventory inventory;
 
     public InventoryStepDefs(BaseSteps baseSteps) {
-        scenario = baseSteps.getScenario();
+        this.scenario = baseSteps.getScenario();
     }
 
     @Then("verify browser navigated to inventory page")
