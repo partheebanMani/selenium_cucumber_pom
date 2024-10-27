@@ -2,7 +2,6 @@ package com.partheeban.model;
 
 
 import io.cucumber.core.internal.com.fasterxml.jackson.core.JsonProcessingException;
-import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,11 +20,11 @@ public class User extends BaseModel {
     private int age;
 
     public User getPOJO(String jsonString) throws JsonProcessingException {
-        return new ObjectMapper().readValue(jsonString, User.class);
+        return OBJECT_MAPPER.readValue(jsonString, User.class);
     }
 
     public List<User> getPOJOList(String jsonString) throws JsonProcessingException {
-        return Arrays.asList(new ObjectMapper().readValue(jsonString, User[].class));
+        return Arrays.asList(OBJECT_MAPPER.readValue(jsonString, User[].class));
     }
 
 }

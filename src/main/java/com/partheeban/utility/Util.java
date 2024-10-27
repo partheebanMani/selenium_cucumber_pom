@@ -1,6 +1,7 @@
 package com.partheeban.utility;
 
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +19,11 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@UtilityClass
 public class Util {
-    public static class CSV {
+    public class CSV {
 
-        public static List<String[]> readAllLines(String filePath) throws Exception {
+        public List<String[]> readAllLines(String filePath) throws Exception {
             return Files.lines(Paths.get(filePath))
                     .map(line -> line.split(","))
                     .toList();
@@ -29,13 +31,13 @@ public class Util {
         }
     }
 
-    public static class Wait {
-        public static WebElement getExplicitWebElement(WebDriver driver, int seconds, By element) {
+    public class Wait {
+        public WebElement getExplicitWebElement(WebDriver driver, int seconds, By element) {
             return new WebDriverWait(driver, Duration.ofSeconds(seconds)).
                     until(ExpectedConditions.elementToBeClickable(element));
         }
 
-        public static void getFluentWait(WebDriver driver, int timeout, int pollingfrequency, String id) {
+        public void getFluentWait(WebDriver driver, int timeout, int pollingfrequency, String id) {
             FluentWait<WebDriver> wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(timeout))
                     .pollingEvery(Duration.ofSeconds(pollingfrequency))
@@ -45,12 +47,12 @@ public class Util {
         }
     }
 
-    public static class FilesUtil {
+    public class FilesUtil {
 
         static final String DATA_FILES_LOCATION = "src/main/resources";
 
         @SneakyThrows
-        public static String getDataFromFile(String fileName) {
+        public String getDataFromFile(String fileName) {
             Path path = Paths.get(DATA_FILES_LOCATION + fileName);
             Stream<String> lines = Files.lines(path);
             String data = lines.collect(Collectors.joining("\n"));
@@ -61,7 +63,7 @@ public class Util {
     }
 
 
-    public static class StringHelper {
+    public class StringHelper {
 
         public String randomString(int length) {
             return RandomStringUtils.randomAlphabetic(length);
