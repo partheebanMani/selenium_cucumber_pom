@@ -42,4 +42,14 @@ public interface PropertiesConfig extends Config {
 
     @Key("browser.env")
     String browserEnv();
+
+
+    @Key("cat.database.url")
+    String catDataBaseUrl();
+
+    @Key("cat.database.username")
+    String catDatabaseUserName();
+
+    @Key("cat.database.password")
+    String catDatabasePassword();
 }

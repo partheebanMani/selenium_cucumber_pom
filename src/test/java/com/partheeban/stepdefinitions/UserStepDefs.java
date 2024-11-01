@@ -27,6 +27,8 @@ public class UserStepDefs extends BaseApplication {
     public void createUserWithBelowDetails(DataTable datatable) {
         List<Map<String, String>> maps = datatable.asMaps(String.class, String.class);
 
+        System.out.println("user step definition" + user.getDatabase());
+
         for (Map<String, String> row : maps) {
             User userPayload = new User(row.get("name"), Double.parseDouble(row.get("salary")), Integer.parseInt(row.get("age")));
             String payload = userPayload.toJsonStringWithPrettyPrinter();
@@ -37,4 +39,5 @@ public class UserStepDefs extends BaseApplication {
 
         }
     }
+    
 }

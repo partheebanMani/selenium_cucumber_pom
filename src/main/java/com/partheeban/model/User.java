@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User extends BaseModel {
+
     private String name;
     private Double salary;
     private int age;
@@ -26,5 +27,6 @@ public class User extends BaseModel {
     public List<User> getPOJOList(String jsonString) throws JsonProcessingException {
         return Arrays.asList(OBJECT_MAPPER.readValue(jsonString, User[].class));
     }
+
 
 }

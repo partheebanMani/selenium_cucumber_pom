@@ -1,5 +1,6 @@
 package com.partheeban;
 
+import com.partheeban.apps.Cat;
 import com.partheeban.apps.Employee;
 import com.partheeban.apps.User;
 import com.partheeban.enums.RestAPIs;
@@ -12,6 +13,8 @@ public abstract class BaseApplication {
     public static Employee employee;
 
     public static User user;
+
+    public static Cat cat;
 
 
     protected BaseApplication(List<RestAPIs> apps) {
@@ -28,6 +31,8 @@ public abstract class BaseApplication {
             case USERS:
                 user = initMethod(user, User.class);
                 break;
+            case CAT:
+                cat = initMethod(cat, Cat.class);
         }
     }
 

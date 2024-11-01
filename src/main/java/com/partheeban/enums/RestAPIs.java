@@ -1,5 +1,5 @@
 package com.partheeban.enums;
 
 public enum RestAPIs {
-    EMPLOYEE, USERS
+    EMPLOYEE, USERS, CAT
 }
