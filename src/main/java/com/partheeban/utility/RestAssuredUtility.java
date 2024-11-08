@@ -11,8 +11,7 @@ public class RestAssuredUtility {
 
     public RequestSpecification getRequestSpecBuilder(String url) {
         return RestAssured.given()
-                .baseUri(url)
-                .contentType(ContentType.JSON);
+                .baseUri(url);
     }
 
     public RequestSpecification getRequestSpecBuilder(String url, String token) {

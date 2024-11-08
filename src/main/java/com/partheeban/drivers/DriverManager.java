@@ -1,4 +1,4 @@
-package com.partheeban.utility;
+package com.partheeban.drivers;
 
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
@@ -68,6 +68,5 @@ public class DriverManager {
     private static Supplier<WebDriver> getSafariDriver() {
         return SafariDriver::new;
     }
-
 
 }

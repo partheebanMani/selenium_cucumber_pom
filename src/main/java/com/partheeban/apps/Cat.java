@@ -17,10 +17,7 @@ public class Cat extends BaseApps {
     @Override
     public Connection dataBaseConnection() {
 
-        System.out.println("Creating Database connection");
-
         try {
-            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(PropertiesConfig.PROPERTIES_CONFIG.catDataBaseUrl(),
                     PropertiesConfig.PROPERTIES_CONFIG.catDatabaseUserName(),
                     PropertiesConfig.PROPERTIES_CONFIG.catDatabasePassword()
@@ -28,7 +25,6 @@ public class Cat extends BaseApps {
 
 
         } catch (Exception e) {
-            System.out.println("Exception occurred during database connection" + e.getMessage());
             log.info("Exception occurred during database connection");
         }
 

@@ -1,10 +1,11 @@
 package com.partheeban.apps;
 
-import com.partheeban.utility.PropertiesConfig;
 import com.partheeban.utility.RestAssuredUtility;
 import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
 import lombok.experimental.ExtensionMethod;
+
+import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 
 
 @Getter
@@ -15,7 +16,7 @@ public class Employee {
 
     public Employee() {
         System.out.println("employee constructor called");
-        employeeSpecification = PropertiesConfig.PROPERTIES_CONFIG.EmployeeBaseUrl().getRequestSpecBuilder();
+        employeeSpecification = PROPERTIES_CONFIG.EmployeeBaseUrl().getRequestSpecBuilder();
     }
 
 //    @Override

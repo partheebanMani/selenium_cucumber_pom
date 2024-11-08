@@ -1,6 +1,6 @@
 package com.partheeban.stepdefinitions;
 
-import com.partheeban.utility.BaseDriver;
+import com.partheeban.drivers.BaseDriver;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

@@ -10,6 +10,8 @@ import io.restassured.specification.RequestSpecification;
 import java.util.List;
 import java.util.Map;
 
+import static com.partheeban.constants.APIUrl.CREATE_USER_BASE_PATH;
+import static com.partheeban.constants.JsonFields.*;
 import static com.partheeban.enums.RestAPIs.USERS;
 
 public class UserStepDefs extends BaseApplication {
@@ -30,14 +32,14 @@ public class UserStepDefs extends BaseApplication {
         System.out.println("user step definition" + user.getDatabase());
 
         for (Map<String, String> row : maps) {
-            User userPayload = new User(row.get("name"), Double.parseDouble(row.get("salary")), Integer.parseInt(row.get("age")));
+            User userPayload = new User(row.get(NAME), Double.parseDouble(row.get(SALARY)), Integer.parseInt(row.get(AGE)));
             String payload = userPayload.toJsonStringWithPrettyPrinter();
 
             testContext.response = userRequestSpecification
                     .body(payload)
-                    .post("/api/v1/create");
+                    .post(CREATE_USER_BASE_PATH);
 
         }
     }
-    
+
 }

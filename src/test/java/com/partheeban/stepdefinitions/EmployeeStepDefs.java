@@ -6,18 +6,21 @@ import com.partheeban.enums.RestAPIs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.partheeban.constants.APIUrl.EMPLOYEE_GET_BASE_PATH;
+import static com.partheeban.constants.JsonFields.DATA;
+import static com.partheeban.constants.JsonFields.PER_PAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class EmployeeStepDefs extends BaseApplication {
 
-    private final RequestSender employeeRequestSpecBuilder;
+    private final RequestSpecification employeeRequestSpecBuilder;
     private final TestContext testContext;
 
     public EmployeeStepDefs(TestContext testContext) {
@@ -28,7 +31,9 @@ public class EmployeeStepDefs extends BaseApplication {
 
     @Given("Call get all employee API")
     public void callGetAllEmployeeAPI() {
-        testContext.response = employeeRequestSpecBuilder.get("/api/user?page=2");
+        testContext.response = employeeRequestSpecBuilder
+                .pathParam("pageNo", 2)
+                .get(EMPLOYEE_GET_BASE_PATH);
     }
 
     @When("verify response code is {int}")
@@ -42,8 +47,8 @@ public class EmployeeStepDefs extends BaseApplication {
     @Then("verify total data is equal to per_page")
     public void verifyTotalDataIsEqualToPer_page() {
         JSONObject jsonObject = new JSONObject(testContext.jsonResponseString);
-        int per_page = jsonObject.getInt("per_page");
-        int data_count = jsonObject.getJSONArray("data").length();
+        int per_page = jsonObject.getInt(PER_PAGE);
+        int data_count = jsonObject.getJSONArray(DATA).length();
         assertThat(per_page).as("count is not matching").isEqualTo(data_count);
     }
 }
