@@ -11,6 +11,7 @@ public class BasePage {
 
     public BasePage(WebDriver webDriver) {
         this.seleniumUtility = new SeleniumUtility(webDriver);
+//        PageFactory.initElements(new AjaxElementLocatorFactory(webDriver,10), this);
         PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
     }
