@@ -1,7 +1,6 @@
 package com.partheeban.stepdefinitions;
 
 import com.partheeban.drivers.BaseDriver;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,16 +18,16 @@ import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 
 public class UtilitiesStepDefs {
 
-    private Scenario scenario;
+    private BaseSteps baseSteps;
+
     private WebDriver webDriver;
 
     private String googleSearchXpath = "//textarea[@id='APjFqb']";
     private String clickSearch = "//input[@class='gNO89b']";
 
     public UtilitiesStepDefs(BaseSteps baseSteps) {
-        this.scenario = baseSteps.getScenario();
+        this.baseSteps = baseSteps;
         webDriver = BaseDriver.getWebDriver();
-
     }
 
     @Given("Open google page")

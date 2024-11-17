@@ -2,23 +2,19 @@ package com.partheeban.drivers;
 
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.function.Supplier;
 
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 
 public class DriverManager {
+
+    private DriverManager() {
+    }
 
     @SneakyThrows
     public static WebDriver setUpDriver() {
@@ -33,7 +29,7 @@ public class DriverManager {
             driver = new RemoteWebDriver(new URL(hubURL), capabilities);
 
         } else {
-            driver = setUpWebDriver(browser);
+            driver = DriverFactory.getDriverProvider(browser).createDriver();
         }
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -42,31 +38,5 @@ public class DriverManager {
         return driver;
     }
 
-    private static WebDriver setUpWebDriver(String browser) {
-        Map<String, Supplier<WebDriver>> drivers = new HashMap<>();
-        drivers.put("chrome", getChromeDriver());
-        drivers.put("firefox", getFirefoxDriver());
-        drivers.put("safari", getSafariDriver());
-
-        return drivers.getOrDefault(browser.toLowerCase().trim(), () -> {
-            throw new RuntimeException("Browser not found...");
-        }).get();
-
-    }
-
-    private static Supplier<WebDriver> getChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-
-        return () -> new ChromeDriver(options);
-    }
-
-    private static Supplier<WebDriver> getFirefoxDriver() {
-        return FirefoxDriver::new;
-    }
-
-    private static Supplier<WebDriver> getSafariDriver() {
-        return SafariDriver::new;
-    }
 
 }
