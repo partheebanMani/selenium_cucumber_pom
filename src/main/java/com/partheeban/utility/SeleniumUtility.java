@@ -53,7 +53,7 @@ public class SeleniumUtility {
 
     }
 
-    public WebElement waitForElementToBeClickable(int seconds, WebElement element) {
+    public static WebElement waitForElementToBeClickable(WebDriver webDriver, int seconds, WebElement element) {
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
         return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -145,5 +145,15 @@ public class SeleniumUtility {
         new Actions(webDriver).sendKeys(keys).perform();
     }
 
+    public static void scrollToElementInView(WebDriver webDriver, WebElement element) {
+        ((JavascriptExecutor) webDriver).executeScript(
+                "var element = arguments[0];" +
+                        "var rect = element.getBoundingClientRect();" +
+                        "var scrollTop = window.scrollY || document.documentElement.scrollTop;" +
+                        "window.scrollTo({top: rect.top + scrollTop - (window.innerHeight / 2), behavior: 'smooth'});",
+                element
+        );
+
+    }
 
 }

@@ -29,7 +29,7 @@ public class Login extends BasePage {
     }
 
     public void clickLoginButton() {
-        seleniumUtility.waitForElementToBeClickable(10, loginButton).click();
+        seleniumUtility.waitForElementToBeClickable(webDriver, 10, loginButton).click();
     }
 
     public String getCurrentPageURL() {

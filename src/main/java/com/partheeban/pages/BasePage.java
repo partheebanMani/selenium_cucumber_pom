@@ -4,7 +4,7 @@ import com.partheeban.utility.SeleniumUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected SeleniumUtility seleniumUtility;
     protected WebDriver webDriver;

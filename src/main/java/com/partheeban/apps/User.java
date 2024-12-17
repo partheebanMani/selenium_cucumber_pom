@@ -20,7 +20,6 @@ public class User {
             generateToken();
         }
         userSpecfication = PropertiesConfig.PROPERTIES_CONFIG.userBaseUrl().getRequestSpecBuilder(token);
-//        dataBaseConnection();
     }
 
     private void generateToken() {
@@ -28,10 +27,5 @@ public class User {
         token = "sdfdsfsdfsdf";
     }
 
-//    @Override
-//    public void dataBaseConnection() {
-//        database = "databaseConnection";
-//        System.out.println("users DataBase");
-//    }
 
 }

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,7 +53,7 @@ public class Util {
         static final String DATA_FILES_LOCATION = "src/main/resources";
 
         @SneakyThrows
-        public String getDataFromFile(String fileName) {
+        public String getDataFromFile(String fileName) throws IOException {
             Path path = Paths.get(DATA_FILES_LOCATION + fileName);
             Stream<String> lines = Files.lines(path);
             String data = lines.collect(Collectors.joining("\n"));

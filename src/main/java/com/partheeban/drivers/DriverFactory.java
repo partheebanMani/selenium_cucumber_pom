@@ -1,22 +1,33 @@
 package com.partheeban.drivers;
 
-import java.util.HashMap;
+import com.partheeban.enums.Browsers;
+import com.partheeban.exceptions.BrowserNotSupportedException;
+
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+
+//Factory design pattern used here
+// getDriverprovider method return webDriver
 public class DriverFactory {
-    private static final Map<String, Supplier<DriverProvider>> providers = new HashMap<>();
+    private static final Map<Browsers, Supplier<DriverProvider>> providers = new EnumMap<>(Browsers.class);
 
     static {
-        providers.put("chrome", ChromeDriverProvider::new);
-        providers.put("firefox", FirefoxDriverProvider::new);
-        providers.put("safari", SafariDriverProvider::new);
+        providers.put(Browsers.CHROME, ChromeDriverProvider::new);
+        providers.put(Browsers.FIREFOX, FirefoxDriverProvider::new);
+        providers.put(Browsers.SAFARI, SafariDriverProvider::new);
     }
 
     public static DriverProvider getDriverProvider(String browser) {
-        return providers.getOrDefault(browser.toLowerCase().trim(),
+
+        if (browser == null || browser.isEmpty() || browser.isBlank()) {
+            throw new IllegalArgumentException("Browser name cannot be null or empty");
+        }
+
+        return providers.getOrDefault(Browsers.valueOf(browser.toUpperCase()),
                 () -> {
-                    throw new RuntimeException("Browser not supported: " + browser);
+                    throw new BrowserNotSupportedException("Browser not supported: " + browser);
                 }
         ).get();
     }
