@@ -11,8 +11,8 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   build:
@@ -28,7 +28,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Set up ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: '137.0.7151.119' # Match to Chrome version
 
       - name: Install xvfb for GUI support
         run: sudo apt-get install -y xvfb
