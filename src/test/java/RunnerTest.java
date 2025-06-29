@@ -7,7 +7,8 @@ import org.testng.annotations.DataProvider;
         features = {"src/test/resources"},
         plugin = {"json:target/cucumber.json",
                 "html:target/cucumber-html-reports/consolidated.html",
-                "rerun:target/rerun.txt"
+                "rerun:target/rerun.txt",
+                "com.aventstack.chaintest.plugins.ChainTestCucumberListener:"
         }
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {

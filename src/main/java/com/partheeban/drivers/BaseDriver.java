@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.ashot.AShot;
@@ -16,10 +17,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-public class BaseDriver {
+public final class BaseDriver {
     private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private static final Logger log = LoggerFactory.getLogger(BaseDriver.class);
 
+
+    //Singleton design pattern used here
     public static synchronized WebDriver getWebDriver() {
         if (webDriver.get() == null) {
             setWebDriver(DriverManager.setUpDriver());
@@ -80,5 +83,18 @@ public class BaseDriver {
         }
 
     }
+
+    public static void takeWebElementScreenshot(WebElement webElement, Scenario scenario) {
+        byte[] src = webElement.getScreenshotAs(OutputType.BYTES);
+        scenario.attach(src, "image/png", "screenshot");
+
+    }
+
+    public static void takeWebElementScreenshot(WebElement webElement, String location) throws IOException {
+        File file = new File(location);
+        File src = webElement.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(src, file);
+    }
+
 
 }

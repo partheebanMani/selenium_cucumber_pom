@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public class Inventory extends BasePage {
-    
+
     @FindBy(id = "shopping_cart_container")
     private WebElement cartIcon;
 
@@ -75,6 +75,7 @@ public class Inventory extends BasePage {
 
     public void clickShoppingCartLink() {
         shoppingCartLink.click();
+
     }
 
 

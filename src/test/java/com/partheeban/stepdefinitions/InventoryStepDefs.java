@@ -47,7 +47,6 @@ public class InventoryStepDefs {
     }
 
     @Then("verify {string} is added in cart")
-    @SneakyThrows
     public void verifySauceLabsBackpackIsAddedInCart(String productName) {
     }
 

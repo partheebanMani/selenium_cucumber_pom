@@ -4,6 +4,8 @@ import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+//using this Base model class, TEMPLATE METHOD PATTERN has been implemented in the USer class
 public abstract class BaseModel {
 
     private static final Logger log = LoggerFactory.getLogger(BaseModel.class);

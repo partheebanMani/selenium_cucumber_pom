@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -18,15 +19,12 @@ import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 
 public class UtilitiesStepDefs {
 
-    private BaseSteps baseSteps;
-
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     private String googleSearchXpath = "//textarea[@id='APjFqb']";
     private String clickSearch = "//input[@class='gNO89b']";
 
     public UtilitiesStepDefs(BaseSteps baseSteps) {
-        this.baseSteps = baseSteps;
         webDriver = BaseDriver.getWebDriver();
     }
 
@@ -45,6 +43,10 @@ public class UtilitiesStepDefs {
 
     @Then("Find site which has lowest price")
     public void findSiteWhichHasLowestPrice() {
+
+        Select select = new Select(webDriver.findElement(By.id("sdfs")));
+        select.getOptions();
+        select.isMultiple();
     }
 
     @And("Navigate to shopping section")

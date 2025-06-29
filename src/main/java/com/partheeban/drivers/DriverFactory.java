@@ -25,9 +25,10 @@ public class DriverFactory {
             throw new IllegalArgumentException("Browser name cannot be null or empty");
         }
 
+        String finalBrowser = browser;
         return providers.getOrDefault(Browsers.valueOf(browser.toUpperCase()),
                 () -> {
-                    throw new BrowserNotSupportedException("Browser not supported: " + browser);
+                    throw new BrowserNotSupportedException("Browser not supported: " + finalBrowser);
                 }
         ).get();
     }

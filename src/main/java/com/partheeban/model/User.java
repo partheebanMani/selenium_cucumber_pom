@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 import java.util.Arrays;
 import java.util.List;
 
+
+/*
+TEMPLATE METHOD PATTERN has been implemented here.
+Abstract BaseModel is used for abstract and user is child class here
+ */
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
