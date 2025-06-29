@@ -66,16 +66,16 @@ jobs:
           
           export DISPLAY=:99
           
-          TAGS= ${{github.event.inputs.cucumberTags}}
-          THREAD-COUNT = ${{github.event.inputs.threadCount}}
+          TAGS="${{github.event.inputs.cucumberTags}}"
+          THREAD_COUNT="${{github.event.inputs.threadCount}}"
           
-          ARGS = ""
-          if [[ -n \"$TAGS\" ]]; then
-            ARGS= '$ARGS -Dcucumber.filter.tags=$TAGS'
+          ARGS=""
+          if [[ -n "$TAGS" ]]; then
+            ARGS="$ARGS -Dcucumber.filter.tags=$TAGS"
           fi
 
-          if [[ -n \"$THREADS\" ]]; then
-              ARGS ="$ARGS -DthreadCount=THREAD-COUNT\"
+          if [[ -n "$THREADS" ]]; then
+              ARGS="$ARGS -DthreadCount=$THREAD_COUNT"
           fi
           
           echo "Running: xvfb-run -a mvn test $ARGS"
