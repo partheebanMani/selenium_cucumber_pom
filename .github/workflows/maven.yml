@@ -11,8 +11,23 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
+  #  pull_request:
+  #    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment'
+        required: false
+        default: 'qa'
+      browser:
+        description: 'Choose the browser'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+
 
 jobs:
   build:
