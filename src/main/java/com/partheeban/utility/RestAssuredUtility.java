@@ -12,6 +12,7 @@ public class RestAssuredUtility {
     public RequestSpecification getRequestSpecBuilder(String url) {
         return RestAssured
                 .given()
+                .header("x-api-key", "reqres-free-v1")
                 .baseUri(url);
     }
 
