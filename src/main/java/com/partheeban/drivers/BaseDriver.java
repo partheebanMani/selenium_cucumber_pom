@@ -22,28 +22,61 @@ public final class BaseDriver {
     private static final Logger log = LoggerFactory.getLogger(BaseDriver.class);
 
 
-    //Singleton design pattern used here
+    /**
+     * Returns the current thread's WebDriver instance, initializing if necessary.
+     *
+     * @return WebDriver instance
+     */
     public static synchronized WebDriver getWebDriver() {
         if (webDriver.get() == null) {
             setWebDriver(DriverManager.setUpDriver());
+            log.info("WebDriver initialized for thread: {}", Thread.currentThread().getId());
         }
 
         return webDriver.get();
     }
 
+    /**
+     * Sets the WebDriver instance for the current thread.
+     *
+     * @param webDriver WebDriver to set
+     */
     public static synchronized void setWebDriver(WebDriver webDriver) {
         BaseDriver.webDriver.set(webDriver);
     }
 
+    /**
+     * Closes the current browser window.
+     */
     public static void closeDriver() {
-        getWebDriver().close();
+        WebDriver driver = webDriver.get();
+        if (driver != null) {
+            driver.close();
+            log.info("WebDriver window closed for thread: {}", Thread.currentThread().getId());
+        } else {
+            log.warn("Attempted to close WebDriver, but it was null.");
+        }
     }
 
+    /**
+     * Quits the WebDriver and removes it from ThreadLocal.
+     */
     public static void quitDriver() {
-        getWebDriver().quit();
+        WebDriver driver = webDriver.get();
+        if (driver != null) {
+            driver.quit();
+            log.info("WebDriver quit for thread: {}", Thread.currentThread().getId());
+        } else {
+            log.warn("Attempted to quit WebDriver, but it was null.");
+        }
         webDriver.remove();
     }
 
+    /**
+     * Takes a screenshot if the scenario has failed.
+     *
+     * @param scenario Cucumber scenario
+     */
     public static void takeScreenshot(Scenario scenario) {
         if (scenario.isFailed()) {
             takeSeleniumScreenshot(scenario);
@@ -51,6 +84,11 @@ public final class BaseDriver {
         }
     }
 
+    /**
+     * Takes a screenshot using Selenium and attaches it to the scenario.
+     *
+     * @param scenario Cucumber scenario
+     */
     public static void takeSeleniumScreenshot(Scenario scenario) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) getWebDriver();
         byte[] src = takesScreenshot.getScreenshotAs(OutputType.BYTES);
@@ -58,6 +96,12 @@ public final class BaseDriver {
 
     }
 
+    /**
+     * Takes a screenshot and saves it to the specified location.
+     *
+     * @param location File path to save screenshot
+     * @throws IOException if file operation fails
+     */
     public static void takeScreenshot(String location) throws IOException {
         File file = new File(location);
         TakesScreenshot takesScreenshot = (TakesScreenshot) getWebDriver();
@@ -65,6 +109,11 @@ public final class BaseDriver {
         FileUtils.copyFile(src, file);
     }
 
+    /**
+     * Takes a full page screenshot and attaches it to the scenario.
+     *
+     * @param scenario Cucumber scenario
+     */
     public static void getFullPageScreenshot(Scenario scenario) {
 
         try {
@@ -90,6 +139,13 @@ public final class BaseDriver {
 
     }
 
+    /**
+     * Takes a screenshot of a WebElement and saves it to the specified location.
+     *
+     * @param webElement WebElement to capture
+     * @param location   File path to save screenshot
+     * @throws IOException if file operation fails
+     */
     public static void takeWebElementScreenshot(WebElement webElement, String location) throws IOException {
         File file = new File(location);
         File src = webElement.getScreenshotAs(OutputType.FILE);

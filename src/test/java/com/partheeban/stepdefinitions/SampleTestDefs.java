@@ -41,11 +41,11 @@ public class SampleTestDefs {
 
     @When("verify login is successful")
     public void verifyLoginIsSuccessful() {
-        assertThat(login.getCurrentPageURL()).isNotEqualTo(PROPERTIES_CONFIG.url());
+        assertThat(login.getCurrentUrl()).isNotEqualTo(PROPERTIES_CONFIG.url());
     }
 
     @When("verify browser remains in login page")
     public void verifyBrowserRemainsInLoginPage() {
-        assertThat(login.getCurrentPageURL()).isEqualTo(PROPERTIES_CONFIG.url());
+        assertThat(login.getCurrentUrl()).isEqualTo(PROPERTIES_CONFIG.url());
     }
 }

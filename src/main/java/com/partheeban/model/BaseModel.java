@@ -17,7 +17,7 @@ public abstract class BaseModel {
         try {
             jsonString = OBJECT_MAPPER.writeValueAsString(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error serializing object to JSON", e);
         }
         return jsonString;
     }
@@ -27,10 +27,9 @@ public abstract class BaseModel {
         try {
             jsonString = OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error serializing object to pretty JSON", e);
         }
         return jsonString;
-
     }
 
     public byte[] toByteArray() {
@@ -38,7 +37,7 @@ public abstract class BaseModel {
         try {
             bytes = OBJECT_MAPPER.writeValueAsBytes(this);
         } catch (Exception e) {
-            log.info(e.getMessage());
+            log.error("Error serializing object to byte array", e);
         }
         return bytes;
     }
