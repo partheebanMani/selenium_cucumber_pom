@@ -25,7 +25,6 @@ public abstract class BaseApplication {
     public static synchronized void initalizeApps(RestAPIs app) {
         switch (app) {
             case EMPLOYEE:
-                System.out.println("inside initalizee empl");
                 employee = initMethod(employee, Employee.class);
                 break;
             case USERS:

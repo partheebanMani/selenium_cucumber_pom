@@ -38,6 +38,7 @@ public class InventoryStepDefs {
 
     @Given("verify {string} is present in products page")
     public void verifySauceLabsBackpackIsPresentInProductsPage(String productName) {
+        log.info("checking {} product is available ", productName);
         assertThat(inventory.isProductAvailable(productName)).as("product is not available in product page").isTrue();
     }
 

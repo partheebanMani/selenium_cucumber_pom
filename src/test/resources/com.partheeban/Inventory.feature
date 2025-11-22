@@ -1,4 +1,4 @@
-@Selenium @Inventory
+@Inventory
 Feature: Tests to validate Inventory page
 
   Background:Login and navigate to inventory page
