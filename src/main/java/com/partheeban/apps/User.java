@@ -1,8 +1,7 @@
 package com.partheeban.apps;
 
-import com.partheeban.utility.PropertiesConfig;
+import com.partheeban.client.UserClient;
 import com.partheeban.utility.RestAssuredUtility;
-import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
 import lombok.experimental.ExtensionMethod;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +17,7 @@ public class User {
 
     private static final Logger log = LoggerFactory.getLogger(User.class);
 
-    private final RequestSpecification userSpecification;
+    public UserClient client;
     private String token;
     private final String database = null;
 
@@ -29,7 +28,7 @@ public class User {
         if (StringUtils.isBlank(token)) {
             generateToken();
         }
-        userSpecification = PropertiesConfig.PROPERTIES_CONFIG.userBaseUrl().getRequestSpecBuilder(token);
+        client = new UserClient(token);
     }
 
     /**

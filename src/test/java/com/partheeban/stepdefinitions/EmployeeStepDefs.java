@@ -6,13 +6,11 @@ import com.partheeban.enums.RestAPIs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.util.List;
 
-import static com.partheeban.constants.APIUrl.EMPLOYEE_GET_BASE_PATH;
 import static com.partheeban.constants.JsonFields.DATA;
 import static com.partheeban.constants.JsonFields.PER_PAGE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,20 +18,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class EmployeeStepDefs extends BaseApplication {
 
-    private final RequestSpecification employeeRequestSpecBuilder;
     private final TestContext testContext;
 
     public EmployeeStepDefs(TestContext testContext) {
         super(List.of(RestAPIs.EMPLOYEE));
         this.testContext = testContext;
-        employeeRequestSpecBuilder = employee.getEmployeeSpecification();
     }
 
     @Given("Call get all employee API")
     public void callGetAllEmployeeAPI() {
-        testContext.response = employeeRequestSpecBuilder
-                .pathParam("pageNo", 2)
-                .get(EMPLOYEE_GET_BASE_PATH);
+        testContext.response = employee.client.getAllEmployees(1);
     }
 
     @When("verify response code is {int}")
@@ -41,7 +35,7 @@ public class EmployeeStepDefs extends BaseApplication {
         assertThat(testContext.response.getStatusCode()).as("Response code didn't match expected status code")
                 .isEqualTo(expectedResponseCode);
         testContext.jsonResponseString = testContext.response.getBody().asString();
-
+        
     }
 
     @Then("verify total data is equal to per_page")
