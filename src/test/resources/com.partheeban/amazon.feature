@@ -1,4 +1,4 @@
-@Selenium @Amazon
+@Amazon
 Feature: This feature file to test amazon functionalities
 
   Scenario: Search for a product

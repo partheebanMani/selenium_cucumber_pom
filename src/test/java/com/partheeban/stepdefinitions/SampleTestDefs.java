@@ -6,6 +6,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,13 +15,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SampleTestDefs {
 
+    private static final Logger log = LoggerFactory.getLogger(SampleTestDefs.class);
     private Login login;
 
 
     @Given("Enter username as {string}")
     public void enterUsernameAsStandard_user(String username) {
-        BaseDriver.getWebDriver().get(PROPERTIES_CONFIG.url());
         login = new Login(BaseDriver.getWebDriver());
+        login.goTo(PROPERTIES_CONFIG.url());
         login.enterUserName(username);
     }
 

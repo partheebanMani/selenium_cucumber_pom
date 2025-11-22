@@ -1,10 +1,12 @@
 package com.partheeban.client;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static com.partheeban.constants.APIUrl.EMPLOYEE_GET_BASE_PATH;
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
+import static io.restassured.RestAssured.given;
 
 public class EmployeeClient extends BaseClient {
 
@@ -18,9 +20,10 @@ public class EmployeeClient extends BaseClient {
     }
 
     private RequestSpecification requestSpec() {
-        return requestSpecification.baseUri(PROPERTIES_CONFIG.EmployeeBaseUrl())
+        return given().spec(requestSpecification).baseUri(PROPERTIES_CONFIG.EmployeeBaseUrl())
                 .relaxedHTTPSValidation()
-                .header("Content-Type", "application/json");
+                .header("x-api-key", "reqres-free-v1")
+                .contentType(ContentType.JSON);
 
     }
 

@@ -5,10 +5,11 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static com.partheeban.utility.PropertiesConfig.PROPERTIES_CONFIG;
+import static io.restassured.RestAssured.given;
 
 public class UserClient extends BaseClient {
 
-    private String token;
+    private final String token;
 
     public UserClient(String token) {
         super();
@@ -16,14 +17,15 @@ public class UserClient extends BaseClient {
     }
 
     public Response createUser(String payload) {
-        return requestSpec().body(payload).post("/createUser");
+        return requestSpec().body(payload).post("/create");
     }
 
     private RequestSpecification requestSpec() {
-        return requestSpecification.baseUri(PROPERTIES_CONFIG.userBaseUrl())
+        return given()
+                .spec(requestSpecification)
+                .baseUri(PROPERTIES_CONFIG.userBaseUrl())
                 .auth()
                 .oauth2(token)
                 .contentType(ContentType.JSON);
-
     }
 }

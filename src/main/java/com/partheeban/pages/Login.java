@@ -22,6 +22,11 @@ public class Login extends BasePage {
         super(webDriver);
     }
 
+
+    public void goTo(String url) {
+        webDriver.get(url);
+    }
+
     /**
      * Enters the username in the username field.
      *
@@ -65,5 +70,5 @@ public class Login extends BasePage {
         clickLoginButton();
     }
 
-   
+
 }

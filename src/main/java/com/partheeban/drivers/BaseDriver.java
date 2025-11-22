@@ -78,9 +78,8 @@ public final class BaseDriver {
      * @param scenario Cucumber scenario
      */
     public static void takeScreenshot(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed() && webDriver.get() != null) {
             takeSeleniumScreenshot(scenario);
-//            getFullPageScreenshot(scenario);
         }
     }
 
@@ -93,7 +92,6 @@ public final class BaseDriver {
         TakesScreenshot takesScreenshot = (TakesScreenshot) getWebDriver();
         byte[] src = takesScreenshot.getScreenshotAs(OutputType.BYTES);
         scenario.attach(src, "image/png", "screenshot");
-
     }
 
     /**

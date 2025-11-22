@@ -13,24 +13,18 @@ public class BaseSteps {
     private Scenario scenario;
 
 
-    @Before(value = "@Selenium", order = 0)
+    @Before
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
     }
-
-    @Before(value = "@Selenium", order = 1)
-    public void driverSetUp() throws InterruptedException {
-        System.out.println("===============Driver setup hook===================== ");
-        BaseDriver.getWebDriver();
-    }
-
-    @After(value = "@Selenium", order = 1)
+    
+    @After(order = 1)
     public void takeScreenshot(Scenario scenario) {
         System.out.println("================after hook is called take screenshot=================");
         BaseDriver.takeScreenshot(scenario);
     }
 
-    @After(value = "@Selenium", order = 0)
+    @After(order = 0)
     public void exit() {
         System.out.println("============after hook to close Driver======================");
         BaseDriver.quitDriver();
