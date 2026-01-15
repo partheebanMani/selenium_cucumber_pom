@@ -12,4 +12,17 @@ pipeline {
             }
         }
     }
+
+    post {
+            always {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target/cucumber-html-reports',
+                    reportFiles: 'consolidated.html',
+                    reportName: 'Cucumber Report'
+                ])
+            }
+        }
 }
