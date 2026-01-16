@@ -20,7 +20,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'target/cucumber-html-reports',
-                    reportFiles: 'consolidated.html',
+                    reportFiles: 'overview-tags.html',
                     reportName: 'Cucumber Report'
                 ])
             }
